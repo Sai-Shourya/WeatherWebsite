@@ -4,24 +4,25 @@ const input=  document.querySelector('.search');
 const button= document.querySelector('button');
 const unitSelect= document.querySelector('.y2 select');
 const daySelect= document.querySelector('.k1 select');
-const cityName = document.querySelector(".span1");
+const span1 = document.querySelector(".span1");
 const mainTemp = document.querySelector(".sn2");
 const feelsLikeData = document.querySelector(".sn3");
 const humidityData = document.querySelector(".sn4");
 const windData = document.querySelector(".sn5");
 const precData = document.querySelector(".sn6");
+const sn1=document.querySelector(".sn1")
 
 
 async function getPlaceData() {
     let search=input.value;
   try {
-    const response = await fetch('https://nominatim.openstreetmap.org/search?q=&format=jsonv2&addressdetails=1')
+    const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${search}&format=jsonv2&addressdetails=1`)
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     const result = await response.json();
-    console.log(result);
+    console.log("This is the result out there",result);
 
     let lat=result[0].lat;
     let lon=result[0].lon;
@@ -37,8 +38,9 @@ async function getPlaceData() {
 
 function findLocationData(locationData){
     let location=locationData[0].address;
-    cityName=locationData.city;
-    countryName=locationData.country;
+    const cityName=locationData.city;
+    const countryName=locationData.country;
+    console.log(cityName,countryName)
     
     const options={
         day:'numeric',
@@ -48,9 +50,12 @@ function findLocationData(locationData){
 
 
     };
-    let currDate = new Intl.DateTimeFormat("en-US", dateOptions).format(new Date());
-    span1.textContent='${city},${country}';
-    sn1.textContent=currDate;
+    
+    let currDate = new Date().toString();
+    span1.textContent=`${cityName},${countryName}`;
+    sn1.textContent=currDate.slice(0,15);
+    
+    console.log(currDate);
 
 
 }
@@ -62,40 +67,46 @@ async function getWeatherData(lat,lon) {
     let precUnit = "mm";
 
     if(unitSelect==='imperial'){
-    let tempUnit = "fahrenheit";
-    let windUnit = "mph";
-    let precUnit = "inch";
+    tempUnit = "fahrenheit";
+    windUnit = "mph";
+    precUnit = "inch";
 
 
     }
   try {
-    const response = await fetch('{https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&current=temperature_2m,precipitation,weather_code,wind_speed_10m,relative_humidity_2m}');
+    console.log("lat",lat,"lon",lon)
+    const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&current=temperature_2m,precipitation,weather_code,wind_speed_10m,relative_humidity_2m`);
+    console.log(response.json())
+    console.log("fetch done")
+    console.log(res.ok)
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
     }
 
-    const data = await response.json();
+    waetherData = await res.json();   
     console.log(data);
+    console.log('Data',data)
 
-    getCurrentWeather(data);
-    getHourlyForecast(data);
-    getDailyForecast(data);
+    getCurrentWeather(weatherData); 
+    getHourlyForecast(weatherData);
+    getDailyForecast(weatherData);
   } catch (error) {
-    console.error("Fetch error:", error);
+    return
   }
 }
 
 function getCurrentWeather(){
-    mainTemp.textContent=Math.round(data.current.temperature_2m);
-    feelsLikeData.textContent=Math.round(data.current.apparent_temperature);
-    humidityData.textContent=data.current.relative_humidity_2m;
+    mainTemp.textContent=Math.round(weatherData.current.temperature_2m);
+    feelsLikeData.textContent=Math.round(weatherData.current.apparent_temperature);
+    humidityData.textContent=weatherData.current.relative_humidity_2m;
     windData.textContent=`${weatherData.current.wind_speed_10m} ${weatherData.current_units.wind_speed_10m.replace("mp/h", "mph")}`;
     precData.textContent=`${weatherData.current.precipitation} ${weatherData.current_units.precipitation.replace("inch", "in")}`;
 }
 
-function getdailyForecast(){
-    let daily=data.daily;
+function getDailyForecast(){
+    let daily=weatherData.daily;
 
     for (let i = 0; i < 7; i++) {
     let date = new Date(daily.time[i]);
@@ -143,22 +154,23 @@ function addDailyElement(tag,className,content,weatherCodeName,parentElement,pos
 
 
 function getHourlyForecast(){
-    console.log('getHourlyForecast()');
+    console.log('getHourlyForecast()')
+    
 
     let dayIndex= parseInt(daySelect.value);
     let firstHour = 24 * dayIndex;
     let lastHour = 24 * (dayIndex + 1) - 1;
-    let hour=data.hourly.time;
-    let weatherCode=data.hourly.weather_code;
-    let temp=data.hourly.temperature_2m;
+    let hour=weatherData.hourly.time;
+    let weatherCode=weatherData.hourly.weather_code;
+    let temp=weatherData.hourly.temperature_2m;
 
     let boxNo=1;
 
     for (let h = firstHour; h <= lastHour; h++) {
     
     let weatherCodeName = getWeatherCodeName(weatherCodes[h]);
-    let everyTemp = Math.round(temps[h]) + "Â°";
-    let everyHour = new Date(hours[h]).toLocaleString("en-US", { hour: "numeric", hour12: true });
+    let everyTemp = Math.round(temp[h]) + "Â°";
+    let everyHour = new Date(hour[h]).toLocaleString("en-US", { hour: "numeric", hour12: true });
     let forecastHour = document.querySelector(`.c${boxNo}`);
 
     while (forecastHour.firstChild) {
@@ -166,8 +178,8 @@ function getHourlyForecast(){
     }
 
     addDailyElement("img", "", weatherCodeName, forecastHour, "afterbegin");
-    addDailyElement("p", hour, "", forecastHour, "beforeend");
-    addDailyElement("p", temp, "", forecastHour, "beforeend");
+    addDailyElement("p", everyHour, "", forecastHour, "beforeend");
+    addDailyElement("p", everyTemp, "", forecastHour, "beforeend");
 
     boxNo++;
 
@@ -209,6 +221,12 @@ function getWeatherCodeName(code) {
 
   return weatherCodes[code];
 }
+
+
+getPlaceData();
+
+
+button.addEventListener('click',getPlaceData);
 
 
 
