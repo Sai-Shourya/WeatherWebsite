@@ -38,8 +38,8 @@ async function getPlaceData() {
 
 function findLocationData(locationData){
     let location=locationData[0].address;
-    const cityName=locationData.city;
-    const countryName=locationData.country;
+    const cityName=location.city;
+    const countryName=location.country;
     console.log(cityName,countryName)
     
     const options={
@@ -76,7 +76,7 @@ async function getWeatherData(lat,lon) {
   try {
     console.log("lat",lat,"lon",lon)
     const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&current=temperature_2m,precipitation,weather_code,wind_speed_10m,relative_humidity_2m`);
-    console.log(response.json())
+    //console.log(response.json())
     console.log("fetch done")
     console.log(res.ok)
 
@@ -85,9 +85,9 @@ async function getWeatherData(lat,lon) {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
 
-    waetherData = await res.json();   
-    console.log(data);
-    console.log('Data',data)
+    const weatherData = await res.json();   
+    console.log(weatherData);
+    console.log('Data',weatherData)
 
     getCurrentWeather(weatherData); 
     getHourlyForecast(weatherData);
@@ -111,7 +111,7 @@ function getDailyForecast(){
     for (let i = 0; i < 7; i++) {
     let date = new Date(daily.time[i]);
     let weekDay = new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(date);
-    let forecastDay = document.querySelector(`.b${i + 1}`);
+    let forecastDay = document.querySelector(`.b${i+1}`);
     let weatherCodeName = getWeatherCodeName(daily.weather_code[i]);
     let dailyHigh = Math.round(daily.temperature_2m_max[i]) + "Â°";
     let dailyLow = Math.round(daily.temperature_2m_min[i]) + "Â°";
@@ -120,12 +120,12 @@ function getDailyForecast(){
         forecastDay.removeChild(forecastDay.firstChild);
     }
 
-    addDailyElement("p", dayOfWeek, "", forecastDay, "afterbegin");
+    addDailyElement("p", weekDay, "", forecastDay, "afterbegin");
     addDailyElement("img", "", weatherCodeName, forecastDay, "beforeend");
     addDailyElement("div", "", "", forecastDay, "beforeend");
 
 
-    let dailyTemps = document.querySelector(`.forecastDay${i + 1}`);
+    let dailyTemps = document.querySelector(`.b${i+1}`);
 
     addDailyElement("p", dailyHigh, "", dailyTemps, "afterbegin");
     addDailyElement("p", dailyLow, "", dailyTemps, "beforeend");
@@ -164,11 +164,11 @@ function getHourlyForecast(){
     let weatherCode=weatherData.hourly.weather_code;
     let temp=weatherData.hourly.temperature_2m;
 
-    let boxNo=1;
+   // let boxNo=1;
 
-    for (let h = firstHour; h <= lastHour; h++) {
+    for (let h = firstHour,boxNo=1; h <= lastHour; h++,boxNo++) {
     
-    let weatherCodeName = getWeatherCodeName(weatherCodes[h]);
+    let weatherCodeName = getWeatherCodeName(weatherCode[h]);
     let everyTemp = Math.round(temp[h]) + "Â°";
     let everyHour = new Date(hour[h]).toLocaleString("en-US", { hour: "numeric", hour12: true });
     let forecastHour = document.querySelector(`.c${boxNo}`);
@@ -181,14 +181,14 @@ function getHourlyForecast(){
     addDailyElement("p", everyHour, "", forecastHour, "beforeend");
     addDailyElement("p", everyTemp, "", forecastHour, "beforeend");
 
-    boxNo++;
+    //boxNo++;
 
 
     }
 }
 
 function getWeatherCodeName(code) {
-  const weatherCodes = {
+  const weatherCode = {
     0: "sunny",
     1: "partly-cloudy",
     2: "partly-cloudy",
@@ -219,7 +219,7 @@ function getWeatherCodeName(code) {
     99: "storm",
   };
 
-  return weatherCodes[code];
+  return weatherCode[code];
 }
 
 
