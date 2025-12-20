@@ -86,7 +86,7 @@ button{
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    border: 1px solid black;
+     
     gap:50px;
     margin-top:40px;
 }
@@ -96,7 +96,7 @@ button{
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    border: 1px solid black;
+     
     
 }
 
@@ -105,7 +105,7 @@ button{
     width:650px;
     background-image: url(images1/bg-today-large.svg);
     color: hsl(0, 0%, 100%);
-    border: 1px solid black;
+     
     display: flex;
     flex-direction: row;
     border-radius: 20px;
@@ -151,7 +151,7 @@ button{
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    border: 1px solid black;
+     
     gap:15px;
     margin-top: 25px;
 
@@ -163,7 +163,7 @@ button{
     width: 140px;
     color:hsl(250, 6%, 84%) ;
     background-color: hsl(243, 27%, 20%);
-    border: 1px solid black;
+     
     border-radius: 15px;
     padding-top: 15px;
     padding-left: 10px;
@@ -180,7 +180,7 @@ button{
     width: 140px;
     color: hsl(250, 6%, 84%);
     background-color: hsl(243, 27%, 20%);
-    border: 1px solid black;
+     
     border-radius: 15px;
     padding-top: 15px;
     padding-left: 10px;
@@ -199,7 +199,7 @@ button{
     width: 140px;
     color: hsl(250, 6%, 84%);
     background-color: hsl(243, 27%, 20%);
-    border: 1px solid black;
+     
     border-radius: 15px;
     padding-top: 15px;
     padding-left: 10px;
@@ -218,7 +218,7 @@ button{
     width: 140px;
     color: hsl(250, 6%, 84%);
     background-color: hsl(243, 27%, 20%);
-    border: 1px solid black;
+     
     border-radius: 15px;
     padding-top: 15px;
     padding-left: 10px;
@@ -235,7 +235,7 @@ button{
     display: flex;
     flex-direction: column;
     gap:10px;
-    border: 1px solid black;
+     
     justify-content: center;
     align-items: flex-start;
     margin-top: 25px;
@@ -252,7 +252,7 @@ button{
     display: flex;
     flex-direction: row;
     gap:10px;
-    border: 1px solid black;
+     
     justify-content: center;
     align-items: flex-start;
     margin-bottom: 40px;
@@ -262,21 +262,94 @@ button{
 .b1{
     height:125px;
     width:77px;
-    overflow: hidden;
+    /*overflow: hidden;*/
     color: hsl(0, 0%, 100%);
     background-color: hsl(243, 27%, 20%);
-    border: 1px solid black;
+     
     padding-top:10px;
-    padding-left: 5px;
+   
     text-align: center;
     border-radius: 10px;
 }
 
 .b1 img{
-    margin-top: 20px;
+    object-fit: contain;
     height: 50px;
     width: 50px;
 }
+
+
+.b1 p:last-child,
+.b2 p:last-child,
+.b3 p:last-child,
+.b4 p:last-child,
+.b5 p:last-child,
+.b6 p:last-child,
+.b7 p:last-child
+{
+  padding:0px;
+  margin-left: 50px;
+  
+  
+  
+}
+
+.b1 p:first-child,
+.b2 p:first-child,
+.b3 p:first-child,
+.b4 p:first-child,
+.b5 p:first-child,
+.b6 p:first-child,
+.b7 p:first-child{
+    margin-top:10px;
+    
+}
+
+.b1 p:nth-child(3),
+.b2 p:nth-child(3),
+.b3 p:nth-child(3),
+.b4 p:nth-child(3),
+.b5 p:nth-child(3),
+.b6 p:nth-child(3),
+.b7 p:nth-child(3){
+    margin-right:55px;
+    
+   
+}
+
+.c1 p:last-child,
+.c2 p:last-child,
+.c3 p:last-child,
+.c4 p:last-child,
+.c5 p:last-child,
+.c6 p:last-child,
+.c7 p:last-child,
+.c8 p:last-child,
+.c9 p:last-child,
+.c10 p:last-child,
+.c11 p:last-child,
+.c12 p:last-child,
+.c13 p:last-child,
+.c14 p:last-child,
+.c15 p:last-child,
+.c16 p:last-child,
+.c17 p:last-child,
+.c18 p:last-child,
+.c19 p:last-child,
+.c20 p:last-child,
+.c21 p:last-child,
+.c22 p:last-child,
+.c23 p:last-child,
+.c24 p:last-child{
+    margin-left:130px;
+}
+
+.k2{
+    height:490px;
+    overflow-y: auto;
+}
+
+
 
 .b2{
     height:125px;
@@ -284,7 +357,7 @@ button{
     overflow: hidden;
     color: hsl(0, 0%, 100%);
     background-color: hsl(243, 27%, 20%);
-    border: 1px solid black;
+     
     padding-top:10px;
     padding-left: 5px;
     text-align: center;
@@ -293,7 +366,7 @@ button{
 }
 
 .b2 img{
-    margin-top: 20px;
+    
     height: 50px;
     width: 50px;
 }
@@ -305,7 +378,7 @@ button{
     overflow: hidden;
     color: hsl(0, 0%, 100%);
     background-color: hsl(243, 27%, 20%);
-    border: 1px solid black;
+     
     padding-top:10px;
     padding-left: 5px;
     text-align: center;
@@ -314,7 +387,7 @@ button{
 }
 
 .b3 img{
-    margin-top: 20px;
+   
     height: 50px;
     width: 50px;
 }
@@ -325,7 +398,7 @@ button{
     overflow: hidden;
     color: hsl(0, 0%, 100%);
     background-color:hsl(243, 27%, 20%) ;
-    border: 1px solid black;
+     
     padding-top:10px;
     padding-left: 5px;
     text-align: center;
@@ -334,7 +407,7 @@ button{
 }
 
 .b4 img{
-    margin-top: 20px;
+    
     height: 50px;
     width: 50px;
 }
@@ -345,7 +418,7 @@ button{
     overflow: hidden;
     color: hsl(0, 0%, 100%);
     background-color: hsl(243, 27%, 20%);
-    border: 1px solid black;
+     
     padding-top:10px;
     padding-left: 5px;
     text-align: center;
@@ -354,7 +427,7 @@ button{
 }
 
 .b5 img{
-    margin-top: 20px;
+   
     height: 50px;
     width: 50px;
 }
@@ -365,7 +438,7 @@ button{
     overflow: hidden;
     color: hsl(0, 0%, 100%);
     background-color: hsl(243, 27%, 20%);
-    border: 1px solid black;
+     
     padding-top:10px;
     padding-left: 5px;
     text-align: center;
@@ -374,7 +447,7 @@ button{
 }
 
 .b6 img{
-    margin-top: 20px;
+   
     height: 50px;
     width: 50px;
 }
@@ -385,7 +458,7 @@ button{
     overflow: hidden;
     color: hsl(0, 0%, 100%);
     background-color: hsl(243, 27%, 20%);
-    border: 1px solid black;
+     
     padding-top:10px;
     padding-left: 5px;
     text-align: center;
@@ -394,7 +467,7 @@ button{
 }
 
 .b7 img{
-    margin-top: 20px;
+  
     height: 50px;
     width: 50px;
 }
@@ -404,7 +477,7 @@ button{
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    border: 1px solid black;
+     
     gap:0;
     color: white;
     margin-top: 10px;
@@ -446,7 +519,7 @@ button{
     /*overflow: hidden;*/
     color: hsl(0, 0%, 100%);
     background-color: hsl(243, 23%, 30%);
-    border: 1px solid black;
+     
     margin: 10px;
     text-align: center;
     display: flex;    
