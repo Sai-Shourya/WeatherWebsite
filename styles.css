@@ -347,6 +347,7 @@ button{
 .k2{
     height:490px;
     overflow-y: auto;
+    background-color: hsl(243, 27%, 20%);
 }
 
 
@@ -497,6 +498,7 @@ button{
 
 
 
+
 .sn9{
     margin-left: 130px;
     color: hsl(250, 6%, 84%);
@@ -535,9 +537,121 @@ button{
     margin-top: 0;
 }
 
+.tempUnit, .precUnit, .windUnit, .day{
+    background-color: hsl(243, 27%, 20%);
+    color: white;
+}
+
+@media(max-width:700px){
+    body{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .x1{
+        display: flex;
+        flex-direction: column;
+        margin:0;
+        gap:0;
+        
+        
+    }
 
 
 
+    .y1 img{
+       
+        height: 200px;
+        width:200px;
+        
+    }
+    .y2{
+        display: flex;
+        flex-direction: column;
+        width:300px;
+        margin-left: 100px;
+        gap:10px;
+    }
+
+    
+    .x2{
+        text-align: center;
+    }
+
+    .x3{
+        display: flex;
+        flex-direction: column;
+    
+    }
+
+    button{
+        width:400px;
+        margin-right:50px;
+    }
+
+    .row1{
+        display: flex;
+        flex-direction:row;
+        width:410px;
+        margin-left:40px;
+        gap:0;
+
+    }
+
+    .sn2{
+        padding:50px;
+        font-size: 2rem;
+    }
+
+    .row2{
+        display: flex;
+        flex-direction:column;
+        margin-left:40px;
+        text-align: center;
+    }
+
+    .a1,.a2,.a3,.a4{
+        width:400px;
+        height:100px;
+    }
+
+   .sn7{
+    margin:170px;
+   }
+
+   .row3{
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+    .p1{
+        display: flex;
+        flex-direction: column;
+        margin-left: 130px;
+       
+    }
+
+    .b1,.b2,.b3,.b4,.b5,.b6,.b7{
+        width:200px;
+        height:150px;
+        
+    }
+
+    .x4{
+        display: flex;
+        flex-direction: column;
+       
+    }
+
+    .col2{
+        margin-left:100px;
+        margin-bottom: 100px;
+        height:600px;
+    }
+
+
+}
 
 
 

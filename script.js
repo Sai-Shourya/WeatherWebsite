@@ -2,7 +2,7 @@
 
 const input=  document.querySelector('.search');
 const button= document.querySelector('button');
-const unitSelect= document.querySelector('.y2 select');
+//const unitSelect= document.querySelector('.y2 select');
 const daySelect= document.querySelector('.k1 select');
 const span1 = document.querySelector(".span1");
 const mainTemp = document.querySelector(".sn2");
@@ -10,7 +10,11 @@ const feelsLikeData = document.querySelector(".sn3");
 const humidityData = document.querySelector(".sn4");
 const windData = document.querySelector(".sn5");
 const precData = document.querySelector(".sn6");
-const sn1=document.querySelector(".sn1")
+const sn1=document.querySelector(".sn1");
+const tempUnitSelect = document.querySelector(".tempUnit");
+const windUnitSelect = document.querySelector(".windUnit");
+const precUnitSelect = document.querySelector(".precUnit");
+
 
 
 
@@ -64,20 +68,25 @@ function findLocationData(locationData){
 
 async function getWeatherData(lat,lon) {
 
-    let tempUnit = "celsius";
+    /*let tempUnit = "celsius";
     let windUnit = "kmh";
     let precUnit = "mm";
 
-    if(unitSelect==='imperial'){
+    if(unitSelect.value==='imperial'){
     tempUnit = "fahrenheit";
     windUnit = "mph";
     precUnit = "inch";
 
 
-    }
+    }*/
+
+    const tempUnit=tempUnitSelect.value;
+    const windUnit=windUnitSelect.value;
+    const precUnit=precUnitSelect.value;
+
   try {
     console.log("lat",lat,"lon",lon)
-    const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&current=temperature_2m,precipitation,weather_code,wind_speed_10m,relative_humidity_2m,apparent_temperature`);
+    const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&current=temperature_2m,precipitation,weather_code,wind_speed_10m,relative_humidity_2m,apparent_temperature&wind_speed_unit=${windUnit}&temperature_unit=${tempUnit}&precipitation_unit=${precUnit}`);
       
     //console.log(response.json())
     console.log("fetch done")
@@ -256,6 +265,10 @@ function getWeatherCodeName(code) {
 getPlaceData();
 button.addEventListener('click',getPlaceData);
 
+
+tempUnitSelect.addEventListener("change", getPlaceData);
+windUnitSelect.addEventListener("change", getPlaceData);
+precUnitSelect.addEventListener("change", getPlaceData);
 
 
 

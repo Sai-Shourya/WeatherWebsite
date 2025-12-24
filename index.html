@@ -19,23 +19,25 @@
 
         <div class="y2">
             
-            <select name="Units">
-                <optgroup label="Units"></optgroup>
-                <optgroup label="Temperature">
-                <option value="metric">Celsius   (C)</option>
-                <option value="imperial">Fahrenheit     (F)</option>
-                </optgroup>
-            
-                <optgroup label="Wind Speed">
-                <option value="metric">km/h</option>
-                <option value="imperial">mph</option>
-                </optgroup>
+           
 
-                <optgroup label="Precipitation">
-                <option value="metric">Millimeters (mm)</option>
-                <option value="imperial">Inch</option>
-                </optgroup>
+            <select class="tempUnit">
+            <option value="celsius">Celsius (C)</option>
+            <option value="fahrenheit">Fahrenheit (F)</option>
             </select>
+
+            <select class="windUnit">
+            <option value="kmh">km/h</option>
+            <option value="mph">mph</option>
+            </select>
+
+            <select class="precUnit">
+            <option value="mm">Millimeters (mm)</option>
+            <option value="inch">Inches (in)</option>
+            </select>
+
+        
+
         </div>
         
     </div>
@@ -74,6 +76,7 @@
             </div>
 
             <div class="row2">
+                
                 <div class="a1">
                     Feels like<br><span class='sn3'></span>
 
@@ -82,8 +85,9 @@
                 <div class="a2">
                     Humidity<br><span class="sn4"></span>
                 
-                </div>
-
+                
+               </div>
+               
                 <div class="a3">
                     Wind<br><span class="sn5"></span>
                 
@@ -93,6 +97,7 @@
                     Precipitation<br><span class="sn6"></span>
                 
                 </div>
+                
             </div>
             
             <div class="row3">
@@ -140,7 +145,7 @@
         <div class="col2">
            <div class="k1"> 
             <span class="sn8">Hourly forecast</span>
-            <select name="Day">
+            <select name="day">
                 <option value="0">Today</option>
                 <option value="1">Tomorrow</option>
                  <option value="2">Day 3</option>
